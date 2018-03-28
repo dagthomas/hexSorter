@@ -103,9 +103,6 @@ function hexToRgb(hex) {
         green = hexToDec(hex.substring(2, 4));
         blue = hexToDec(hex.substring(4, 6));
     }
-
-    // rgb is an array
-
     rgb.push(red, green, blue);
 
     return rgb;
@@ -240,13 +237,11 @@ function brightestDullColor(colors) {
         hsv = hexToHsv(hex);
 
         brightness = hexBrightness(hex);
-        // Prevent "division by zero" messages.
         hsv['s'] = (hsv['s'] == 0) ? 0.0001 : hsv['s'];
         howDull = 1 / hsv['s'];
 
         if (brightestDull) {
             oldHsv = hexToHsv(brightestDull);
-            // Prevent "division by zero" messages.
             oldHsv['s'] = (oldHsv['s'] == 0) ? 0.0001 : oldHsv['s'];
             howDullOld = 1 / oldHsv['s'];
         }
@@ -264,7 +259,6 @@ function mix_colors(hex1, hex2, percent) {
     hex1 = hexValueSanitize(hex1);
     hex2 = hexValueSanitize(hex2);
 
-    // Format the hex color string
     hex1 = hex1.replace('#', '');
     if (hex1.length == 3) {
         hex1 = hex1.repeat(hex1.substr(0, 1), 2) + hex1.repeat(hex1.substr(1, 2), 2) + hex1.repeat(hex1.substr(2, 3), 2);
@@ -274,7 +268,7 @@ function mix_colors(hex1, hex2, percent) {
     if (hex2.length == 3) {
         hex2 = hex2.repeat(hex2.substr(0, 1), 2) + hex2.repeat(hex2.substr(1, 2), 2) + hex2.repeat(hex2.substr(2, 3), 2);
     }
-    // Get decimal values
+
     r1 = hexToDec(hex1.substr(0, 2));
     g1 = hexToDec(hex1.substr(2, 2));
     b1 = hexToDec(hex1.substr(4, 2));
