@@ -67,14 +67,15 @@ node sortcolors
 [Hex Sorter - Stack Blitz example](https://stackblitz.com/edit/hexsorter?file=index.js)
 
 
-Outputs dagthomas.css based on color arrays in colors.txt (from an earlier Kuler project, nvrfrgt).
-
 ### Adobe Kuler Top 100 palettes, 2017 (nvrfrgt)
 
 convtocss.js - NodeJS example, reading from file, outputting to css.
+
 ```shell
 node convtocss
 ```
+
+Outputs 'output/dagthomas.css' based on color arrays in 'input/colors.txt' (from an earlier php Kuler project, nvrfrgt).
 
 [Color Input](https://github.com/dagthomas/hexSorter/blob/master/input/colors.txt)
 
