@@ -26,6 +26,7 @@
     },
     "homepage": "https://github.com/dagthomas/hexSorter#readme",
     "dependencies": {
+        "chalk": "^2.3.2",
         "fs": "0.0.1-security",
         "readline": "^1.3.0"
     }
