@@ -63,7 +63,7 @@ convtocss.js - NodeJS example, reading from file, outputting to css.
 ```shell
 node convtocss
 ```
-[my link text](http://www.google.com){:target="_blank"}
+
 ### Web example
 [Hex Sorter - Stack Blitz example](https://stackblitz.com/edit/hexsorter?file=index.js)
 
