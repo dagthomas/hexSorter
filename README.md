@@ -40,7 +40,7 @@ sheets or vector fill/strokes.<br><br>
 
 ## Usage
 ```js
-const hexSorter = require('./hexSorter');
+const hexSorter = require('hexSorter');
 const log = console.log;
 var colorArray = ["#516373", "#f2b999", "#f2e8c9", "#6c838c", "#f2f2f2"];
 
