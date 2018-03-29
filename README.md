@@ -25,6 +25,7 @@ console.log("mix", module.exports.colorMixer('#000000', '#FF0000', 65));
 ```
 ## sortcolors.js - NodeJS example, showing how sorting works
 `node sortcolors`
+
 ![alt text](https://raw.githubusercontent.com/dagthomas/hexSorter/master/images/output_hexSorter.png "Sorted Color Array")
 
 
