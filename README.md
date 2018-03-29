@@ -7,6 +7,13 @@
 ![alt text](https://raw.githubusercontent.com/dagthomas/hexSorter/master/images/sorted_hexSorter.png "Sorted Color Array")
 
 
+## Avaliable functions
+### const hexSorter = require('./hexSorter');
+#### mostBrightColor
+#### mostSaturatedColor
+#### brightestDullColor
+#### colorMixer
+
 ```javascript
 var colorArray = ["#516373", "#f2b999", "#f2e8c9", "#6c838c", "#f2f2f2"];
 
