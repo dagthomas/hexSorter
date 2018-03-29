@@ -86,4 +86,5 @@ Outputs 'output/dagthomas.css' based on color arrays in 'input/colors.txt' (from
 
 ## Shoutouts
 The wonderful str_pad remake
+
 [javascript str_pad](http://locutus.io/php/str_pad/)
