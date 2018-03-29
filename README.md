@@ -26,10 +26,10 @@ const hexSorter = require('./hexSorter');
 ## Why hexSorter?
 
 hexSorter was based on an old Adobe Kuler plugin in php. Rewritten to work with<br>
-new technology.<br><br>
+new technology.<br>
 
 Its usage is to automagically sort colors by luminosity, to generate style<br>
-sheets or vector fill/strokes.<br><br>
+sheets or vector fill/strokes.<br>
 
  * Sort colors by luminosity
  * Get brightest color from array
