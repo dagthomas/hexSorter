@@ -1,9 +1,9 @@
 # hexSorter
 
-Original:
+### Original:
 ![alt text](https://raw.githubusercontent.com/dagthomas/hexSorter/master/images/unsorted_hexSorter.png "Unsorted Color Array")
 
-Sorted:
+### Sorted:
 ![alt text](https://raw.githubusercontent.com/dagthomas/hexSorter/master/images/sorted_hexSorter.png "Sorted Color Array")
 
 
