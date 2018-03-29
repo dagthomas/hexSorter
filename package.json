@@ -2,7 +2,7 @@
     "name": "hexsorter",
     "version": "1.0.0",
     "description": "A sorter for hexadecimal color arrays - by brightness, saturization, brightest dull color + hex color mixer.",
-    "main": "hexfix.js",
+    "main": "hexSorter.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
