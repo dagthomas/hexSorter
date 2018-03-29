@@ -16,6 +16,10 @@ console.log("bright dull", module.exports.brightestDullColor(colorArray));
 console.log("mix", module.exports.colorMixer('#000000', '#FF0000', 65));
 
 ```
+## sortcolors.js - NodeJS example, showing how sorting works
+node sortcolors
 
 ## convtocss.js - NodeJS example, reading from file, outputting to css.
+node convtocss
+
 Outputs dagthomas.css based on color arrays in colors.txt (from an earlier Kuler project, nvrfrgt).
