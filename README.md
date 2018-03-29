@@ -83,3 +83,7 @@ Outputs 'output/dagthomas.css' based on color arrays in 'input/colors.txt' (from
 
 ### Example of CSS file used on SVG in HTML
 ![alt text](https://raw.githubusercontent.com/dagthomas/hexSorter/master/images/example_hexSorter.png "Example of palette applied to SVG")
+
+## Shoutouts
+The wonderful str_pad remake
+[javascript str_pad](http://locutus.io/php/str_pad/)
