@@ -50,7 +50,9 @@ log("bright dull", hexSorter.brightestDullColor(colorArray));
 log("mix", hexSorter.colorMixer('#000000', '#FF0000', 65));
 
 ```
-### Examples
+## Examples
+
+## Node.js console example
 
 sortcolors.js - NodeJS example, showing how sorting works
 ```shell
