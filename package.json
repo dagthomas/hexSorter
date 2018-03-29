@@ -1,0 +1,32 @@
+{
+    "name": "hexsorter",
+    "version": "1.0.0",
+    "description": "A sorter for hexadecimal color arrays - by brightness, saturization, brightest dull color + hex color mixer.",
+    "main": "hexfix.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/dagthomas/hexSorter.git"
+    },
+    "keywords": [
+        "hex",
+        "color",
+        "sorter",
+        "hexadecimal",
+        "brightness",
+        "saturization",
+        "luminosity"
+    ],
+    "author": "Dag Thomas Olsen",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/dagthomas/hexSorter/issues"
+    },
+    "homepage": "https://github.com/dagthomas/hexSorter#readme",
+    "dependencies": {
+        "fs": "0.0.1-security",
+        "readline": "^1.3.0"
+    }
+}
