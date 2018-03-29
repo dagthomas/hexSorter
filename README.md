@@ -17,9 +17,12 @@ console.log("mix", module.exports.colorMixer('#000000', '#FF0000', 65));
 
 ```
 ## sortcolors.js - NodeJS example, showing how sorting works
-node sortcolors
+`node sortcolors`
+![alt text](https://raw.githubusercontent.com/dagthomas/hexSorter/master/images/output_hexSorter.png "Sorted Color Array")
+
 
 ## convtocss.js - NodeJS example, reading from file, outputting to css.
-node convtocss
+`node convtocss`
 
 Outputs dagthomas.css based on color arrays in colors.txt (from an earlier Kuler project, nvrfrgt).
+[CSS Output](https://github.com/dagthomas/hexSorter/blob/master/dagthomas.css)
