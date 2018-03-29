@@ -8,7 +8,7 @@ const inputFile = 'colors.txt';
 var lineno = 1;
 var output = "";
 
-fs.unlink(outputFile, function(err) {
+fs.unlink("output/" + outputFile, function(err) {
     if (err && err.code == 'ENOENT') {
         //  console.info("File " + outputFile + " doesn't exist, won't remove it.");
     } else if (err) {
@@ -19,11 +19,11 @@ fs.unlink(outputFile, function(err) {
 });
 
 var lineReader = readline.createInterface({
-    input: fs.createReadStream(inputFile)
+    input: fs.createReadStream("input/" + inputFile)
 });
 
 function writeToFile(input) {
-    fs.appendFile(outputFile, input.toString(), function(err) {
+    fs.appendFile("output/" + outputFile, input.toString(), function(err) {
         if (err) throw err;
     });
 
