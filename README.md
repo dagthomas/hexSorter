@@ -20,7 +20,7 @@ $ npm i --save hexsorter
 In Node.js:
 ```js
 // Load the module.
-const hexSorter = require('./hexSorter');
+const hexSorter = require('hexSorter');
 ```
 
 ## Why hexSorter?
