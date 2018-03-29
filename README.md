@@ -33,4 +33,5 @@ console.log("mix", module.exports.colorMixer('#000000', '#FF0000', 65));
 `node convtocss`
 
 Outputs dagthomas.css based on color arrays in colors.txt (from an earlier Kuler project, nvrfrgt).
-[CSS Output](https://github.com/dagthomas/hexSorter/blob/master/dagthomas.css)
+[Color Input - Kuler top 100, 2017](https://github.com/dagthomas/hexSorter/blob/master/input/colors.txt)
+[CSS Output](https://github.com/dagthomas/hexSorter/blob/master/output/dagthomas.css)
