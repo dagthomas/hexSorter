@@ -1,6 +1,6 @@
 {
     "name": "hexsorter",
-    "version": "1.2.6",
+    "version": "1.3.0",
     "description": "A sorter for hexadecimal color arrays - by brightness, saturization, brightest dull color + hex color mixer.",
     "main": "hexSorter.js",
     "scripts": {
