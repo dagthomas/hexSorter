@@ -25,9 +25,7 @@ module.exports = {
 
     hexValueSanitize: function(color) {
         var red, green, blue, hex;
-
-        color = color.replace(/[^A-Z0-9]/ig, "")
-        color = color.replace("#", "");
+        color = color.replace(/[^A-Z0-9]/ig, '').replace('#', '')
         if (color.length > 6) {
             color = color.substring(0, 6);
         }
@@ -38,9 +36,9 @@ module.exports = {
                 color = color.substring(0, 3);
             }
             if (color.length == 3) {
-                red = color.substring(0, 1) + color.substring(0, 1);
-                green = color.substring(1, 2) + color.substring(1, 2);
-                blue = color.substring(2, 3) + color.substring(2, 3);
+                red = color[0] + color[0];
+                green = color[1] + color[1];
+                blue = color[2] + color[2];
                 hex = red + green + blue;
             }
             if (color.length == 2) {
@@ -50,12 +48,11 @@ module.exports = {
                 hex = color + color + color + color + color + color;
             }
         }
-        return '#' + hex;
+        return hex;
     },
 
     hexToDec: function(hex) {
-        hex = (hex + '').replace(/[^a-f0-9]/gi, '')
-        return parseInt(hex, 16)
+        return parseInt((hex + '').replace(/[^a-f0-9]/gi, ''), 16);
     },
 
     decToHex: function(number) {
@@ -64,28 +61,23 @@ module.exports = {
         }
         return parseInt(number, 10).toString(16);
     },
-
-
     hexToRgb: function(hex) {
         var red, green, blue;
-        var rgb = [];
 
-        hex = hex.replace('#', '');
         hex = this.hexValueSanitize(hex);
         if (hex.length == 3) {
-            red = this.hexToDec(hex.substring(0, 1) + hex.substring(0, 1));
-            green = this.hexToDec(hex.substring(1, 1) + hex.substring(1, 1));
-            blue = this.hexToDec(hex.substring(2, 1) + hex.substring(2, 1));
+            red = this.hexToDec(hex[0] + hex[0]);
+            green = this.hexToDec(hex[1] + hex[1]);
+            blue = this.hexToDec(hex[2] + hex[2]);
         } else {
-            red = this.hexToDec(hex.substring(0, 2));
-            green = this.hexToDec(hex.substring(2, 4));
-            blue = this.hexToDec(hex.substring(4, 6));
+            red = this.hexToDec(hex[0] + hex[1]);
+            green = this.hexToDec(hex[2] + hex[3]);
+            blue = this.hexToDec(hex[4] + hex[5]);
         }
-        rgb.push(red, green, blue);
-        return rgb;
+        return [red, green, blue];
     },
-    hexBrightness: function(hex, type = 'BT601') {
-        var conversion;
+    hexBrightness: function(hex, type) {
+        var conversion, red, green, blue;
         if (type == 'BT601') {
             conversion = [0.299, 0.587, 0.114]; //BT601
         } else if (type == 'BT709') {
@@ -96,14 +88,11 @@ module.exports = {
             conversion = [0.299, 0.587, 0.114]; //BT601
         }
 
-        var red, green, blue;
-
         hex = this.hexValueSanitize(hex);
-        hex = hex.replace('#', '');
 
-        red = this.hexToDec(hex.substring(0, 2)) * conversion[0];
-        green = this.hexToDec(hex.substring(2, 4)) * conversion[1];
-        blue = this.hexToDec(hex.substring(4, 6)) * conversion[2];
+        red = this.hexToDec(hex[0] + hex[1]) * conversion[0];
+        green = this.hexToDec(hex[2] + hex[3]) * conversion[1];
+        blue = this.hexToDec(hex[4] + hex[5]) * conversion[2];
 
         return ((red) + (green) + (blue));
     },
@@ -112,7 +101,7 @@ module.exports = {
         var g = color[1] / 255;
         var b = color[2] / 255;
 
-        var h, s, min, max, del, dR, dG, dB;
+        var h, s, min, max, del, dR, dG, dB, hsl;
 
         hsl = [];
 
@@ -156,7 +145,7 @@ module.exports = {
     hexToHsv: function(hex) {
         var rgb, hsv;
 
-        hex = this.hexValueSanitize(hex).replace('#', '');
+        hex = this.hexValueSanitize(hex);
 
         rgb = this.hexToRgb(hex);
         hsv = this.rgbToHsv(rgb);
@@ -167,9 +156,8 @@ module.exports = {
         var mostBright = false;
         var color, hex, brightness;
 
-        for (i = 0; i < colors.length; i++) {
-            color = this.hexValueSanitize(colors[i]);
-            hex = color.replace('#', '');
+        for (var i = 0, length = colors.length; i < length; i++) {
+            hex = this.hexValueSanitize(colors[i]);
 
             brightness = this.hexBrightness(hex, type);
             if (!mostBright || this.hexBrightness(hex, type) > this.hexBrightness(mostBright, type)) {
@@ -183,9 +171,8 @@ module.exports = {
         var mostSaturated = false;
         var color, hex, hsv, saturation, oldHsv;
 
-        for (i = 0; i < colors.length; i++) {
-            color = this.hexValueSanitize(colors[i]);
-            hex = color.replace('#', '');
+        for (var i = 0, length = colors.length; i < length; i++) {
+            hex = this.hexValueSanitize(colors[i]);
             hsv = this.hexToHsv(hex);
 
             saturation = hsv['s'];
@@ -204,24 +191,21 @@ module.exports = {
         var r1, r2, g1, g2, b1, b2;
         hex1 = this.hexValueSanitize(hex1);
         hex2 = this.hexValueSanitize(hex2);
-
-        hex1 = hex1.replace('#', '');
         if (hex1.length == 3) {
-            hex1 = hex1.repeat(hex1.substr(0, 1), 2) + hex1.repeat(hex1.substr(1, 2), 2) + hex1.repeat(hex1.substr(2, 3), 2);
+            hex1 = hex1.repeat(hex1[0], 2) + hex1.repeat(hex1[1], 2) + hex1.repeat(hex1[2], 2);
         }
 
-        hex2 = hex2.replace('#', '');
         if (hex2.length == 3) {
-            hex2 = hex2.repeat(hex2.substr(0, 1), 2) + hex2.repeat(hex2.substr(1, 2), 2) + hex2.repeat(hex2.substr(2, 3), 2);
+            hex2 = hex2.repeat(hex2[0], 2) + hex2.repeat(hex2[1], 2) + hex2.repeat(hex2[2], 2);
         }
 
-        r1 = this.hexToDec(hex1.substr(0, 2));
-        g1 = this.hexToDec(hex1.substr(2, 2));
-        b1 = this.hexToDec(hex1.substr(4, 2));
+        r1 = this.hexToDec(hex1[0] + hex1[1]);
+        g1 = this.hexToDec(hex1[2] + hex1[3]);
+        b1 = this.hexToDec(hex1[4] + hex1[5]);
 
-        r2 = this.hexToDec(hex2.substr(0, 2));
-        g2 = this.hexToDec(hex2.substr(2, 2));
-        b2 = this.hexToDec(hex2.substr(4, 2));
+        r2 = this.hexToDec(hex2[0] + hex2[1]);
+        g2 = this.hexToDec(hex2[2] + hex2[3]);
+        b2 = this.hexToDec(hex2[4] + hex2[5]);
 
         red = (percent * r1 + (100 - percent) * r2) / 100;
         green = (percent * g1 + (100 - percent) * g2) / 100;
