@@ -85,8 +85,7 @@ module.exports = {
         return rgb;
     },
     hexBrightness: function(hex, type = 'BT601') {
-        console.log(type);
-        var conversion; // BT601
+        var conversion;
         if (type = 'BT601') {
             conversion = [0.299, 0.587, 0.114]; //BT601
         } else if (type = 'BT709') {
@@ -236,9 +235,10 @@ module.exports = {
     }
 }
 
-
+/*
 var colorArray = ["#516373", "#6c838c", "#f2e8c9", "#f2b999", "#f2f2f2"];
 
 console.log("bright", module.exports.mostBrightColor(colorArray, 'BT709'));
 console.log("saturated", module.exports.mostSaturatedColor(colorArray));
 console.log("mix", module.exports.colorMixer('#000000', '#FF0000', 65));
+*/
