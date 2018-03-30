@@ -1,20 +1,9 @@
 module.exports = {
-    strPad: function(input, padLength, padString, padType) {
-        // eslint-disable-line camelcase
-        //  discuss at: http://locutus.io/php/str_pad/
-        // original by: Kevin van Zonneveld (http://kvz.io)
-        // improved by: Michael White (http://getsprink.com)
-        //    input by: Marco van Oort
-        // bugfixed by: Brett Zamir (http://brett-zamir.me)
-        //   example 1: strPad('Kevin van Zonneveld', 30, '-=', 'STR_PAD_LEFT')
-        //   returns 1: '-=-=-=-=-=-Kevin van Zonneveld'
-        //   example 2: strPad('Kevin van Zonneveld', 30, '-', 'STR_PAD_BOTH')
-        //   returns 2: '------Kevin van Zonneveld-----'
-
+    strPad: function(input, padLength, padString) {
         var half = ''
         var padToGo
 
-        var _strPadRepeater = function(s, len) {
+        var strPadRepeater = function(s, len) {
             var collect = ''
 
             while (collect.length < len) {
@@ -28,19 +17,8 @@ module.exports = {
         input += ''
         padString = padString !== undefined ? padString : ' '
 
-        if (padType !== 'STR_PAD_LEFT' && padType !== 'STR_PAD_RIGHT' && padType !== 'STR_PAD_BOTH') {
-            padType = 'STR_PAD_RIGHT'
-        }
         if ((padToGo = padLength - input.length) > 0) {
-            if (padType === 'STR_PAD_LEFT') {
-                input = _strPadRepeater(padString, padToGo) + input
-            } else if (padType === 'STR_PAD_RIGHT') {
-                input = input + _strPadRepeater(padString, padToGo)
-            } else if (padType === 'STR_PAD_BOTH') {
-                half = _strPadRepeater(padString, Math.ceil(padToGo / 2))
-                input = half + input + half
-                input = input.substr(0, padLength)
-            }
+            input = strPadRepeater(padString, padToGo) + input
         }
         return input
     },
@@ -87,6 +65,7 @@ module.exports = {
         return parseInt(number, 10).toString(16);
     },
 
+
     hexToRgb: function(hex) {
         var red, green, blue;
         var rgb = [];
@@ -103,7 +82,6 @@ module.exports = {
             blue = this.hexToDec(hex.substring(4, 6));
         }
         rgb.push(red, green, blue);
-
         return rgb;
     },
     hexBrightness: function(hex) {
@@ -112,30 +90,24 @@ module.exports = {
         hex = this.hexValueSanitize(hex);
         hex = hex.replace('#', '');
 
-        red = this.hexToDec(hex.substring(0, 2));
-        green = this.hexToDec(hex.substring(2, 4));
-        blue = this.hexToDec(hex.substring(4, 6));
+        red = this.hexToDec(hex.substring(0, 2)) * 0.299;
+        green = this.hexToDec(hex.substring(2, 4)) * 0.587;
+        blue = this.hexToDec(hex.substring(4, 6)) * 0.114;
 
-        return ((red * 299) + (green * 587) + (blue * 114)) / 1000;
+        return ((red) + (green) + (blue));
     },
     rgbToHsv: function(color) {
-        var r = color[0];
-        var g = color[1];
-        var b = color[2];
+        var r = color[0] / 255;
+        var g = color[1] / 255;
+        var b = color[2] / 255;
 
-        var h, s, v, min, max, del, dR, dG, dB;
+        var h, s, min, max, del, dR, dG, dB;
 
         hsl = [];
-
-        r = (r / 255);
-        g = (g / 255);
-        b = (b / 255);
 
         min = Math.min(r, g, b);
         max = Math.max(r, g, b);
         del = max - min;
-
-        v = max;
 
         if (del == 0) {
             h = 0;
@@ -166,15 +138,14 @@ module.exports = {
 
         hsl['h'] = h;
         hsl['s'] = s;
-        hsl['v'] = v;
+        hsl['v'] = max;
 
         return hsl;
     },
     hexToHsv: function(hex) {
         var rgb, hsv;
 
-        hex = this.hexValueSanitize(hex);
-        hex = hex.replace('#', '');
+        hex = this.hexValueSanitize(hex).replace('#', '');
 
         rgb = this.hexToRgb(hex);
         hsv = this.rgbToHsv(rgb);
@@ -218,30 +189,26 @@ module.exports = {
         }
         return '#' + mostSaturated;
     },
-    brightestDullColor: function(colors) {
-        var brightestDull = false;
-        var color, hex, hsv, brightness, howDull, howDullOld, hsvOld;
+    mostIntenseColor: function(colors) {
+        var color, hex, hsv, saturation, hsvOld, mostIntense;
+        mostIntense = false;
 
         for (i = 0; i < colors.length; i++) {
             color = this.hexValueSanitize(colors[i]);
             hex = color.replace('#', '');
             hsv = this.hexToHsv(hex);
+            saturation = hsv['s'];
 
-            brightness = this.hexBrightness(hex);
-            hsv['s'] = (hsv['s'] == 0) ? 0.0001 : hsv['s'];
-            howDull = 1 / hsv['s'];
-
-            if (brightestDull) {
-                oldHsv = this.hexToHsv(brightestDull);
-                oldHsv['s'] = (oldHsv['s'] == 0) ? 0.0001 : oldHsv['s'];
-                howDullOld = 1 / oldHsv['s'];
+            if (mostIntense) {
+                hsvOld = this.hexToHsv(mostIntense);
             }
 
-            if (!brightestDull || this.hexBrightness(hex) * howDull > this.hexBrightness(brightestDull) * howDullOld) {
-                brightestDull = hex;
+            if (!mostIntense || saturation > hsvOld['s']) {
+                mostIntense = hex;
             }
         }
-        return '#' + brightestDull;
+        return '#' + mostIntense;
+
     },
     colorMixer: function(hex1, hex2, percent) {
         var r1, r2, g1, g2, b1, b2;
@@ -270,17 +237,19 @@ module.exports = {
         green = (percent * g1 + (100 - percent) * g2) / 100;
         blue = (percent * b1 + (100 - percent) * b2) / 100;
 
-        var red_hex = this.strPad(this.decToHex(red), 2, '0', 'STR_PAD_LEFT');
-        var green_hex = this.strPad(this.decToHex(green), 2, '0', 'STR_PAD_LEFT');
-        var blue_hex = this.strPad(this.decToHex(blue), 2, '0', 'STR_PAD_LEFT');
+        var red_hex = this.strPad(this.decToHex(red), 2, '0');
+        var green_hex = this.strPad(this.decToHex(green), 2, '0');
+        var blue_hex = this.strPad(this.decToHex(blue), 2, '0');
 
         return '#' + red_hex + green_hex + blue_hex;
     }
 }
 
-/*var colorArray = ["#516373", "#6c838c", "#f2e8c9", "#f2b999", "#f2f2f2"];
+/*
+var colorArray = ["#516373", "#6c838c", "#f2e8c9", "#f2b999", "#f2f2f2"];
 
 console.log("bright", module.exports.mostBrightColor(colorArray));
 console.log("saturated", module.exports.mostSaturatedColor(colorArray));
-console.log("bright dull", module.exports.brightestDullColor(colorArray));
-console.log("mix", module.exports.colorMixer('#000000', '#FF0000', 65));*/
+console.log("most intense", module.exports.mostIntenseColor(colorArray));
+console.log("mix", module.exports.colorMixer('#000000', '#FF0000', 65));
+*/

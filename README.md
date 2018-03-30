@@ -46,11 +46,19 @@ var colorArray = ["#516373", "#f2b999", "#f2e8c9", "#6c838c", "#f2f2f2"];
 
 log("bright", hexSorter.mostBrightColor(colorArray));
 log("saturated", hexSorter.mostSaturatedColor(colorArray));
-log("bright dull", hexSorter.brightestDullColor(colorArray));
+log("most intense", hexSorter.mostIntenseColor(colorArray));
 log("mix", hexSorter.colorMixer('#000000', '#FF0000', 65));
 
 ```
 ## Examples
+
+Can be found in the /examples/ folder, be sure to run:
+
+```shell
+npm install
+```
+
+in the examples folder before testing examples.
 
 ## Node.js console example
 
@@ -77,9 +85,9 @@ node convtocss
 
 Outputs 'output/dagthomas.css' based on color arrays in 'input/colors.txt' (from an earlier php Kuler project, nvrfrgt).
 
-[Color Input](https://github.com/dagthomas/hexSorter/blob/master/input/colors.txt)
+[Color Input](https://github.com/dagthomas/hexSorter/blob/master/examples/input/colors.txt)
 
-[CSS Output](https://github.com/dagthomas/hexSorter/blob/master/output/dagthomas.css)
+[CSS Output](https://github.com/dagthomas/hexSorter/blob/master/examples/output/dagthomas.css)
 
 ### Example of CSS file used on SVG in HTML
 ![alt text](https://raw.githubusercontent.com/dagthomas/hexSorter/master/images/example_hexSorter.png "Example of palette applied to SVG")

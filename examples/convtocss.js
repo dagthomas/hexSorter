@@ -1,6 +1,6 @@
 const fs = require('fs');
 const readline = require('readline');
-const hexSorter = require('./hexSorter');
+const hexSorter = require('hexSorter');
 
 const outputFile = 'dagthomas.css';
 const inputFile = 'colors.txt';

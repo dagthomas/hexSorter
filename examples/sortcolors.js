@@ -1,4 +1,4 @@
-const hexSorter = require('./hexSorter');
+const hexSorter = require('hexSorter');
 const chalk = require('chalk');
 const log = console.log;
 
