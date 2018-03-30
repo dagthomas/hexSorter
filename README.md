@@ -34,7 +34,7 @@ sheets or vector fill/strokes.<br>
  * Sort colors by luminosity
  * Get brightest color from array
  * Get most saturated color from array
- * Get dullest bright color from array
+ * Get highest intensity color from array
  * Mix hexadecimal color values to create/diffuse colors
  <br>
 
