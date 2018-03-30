@@ -1,4 +1,4 @@
-# hexSorter v1.2.4
+# hexSorter v1.2.5
 
 ### Original:
 ![alt text](https://raw.githubusercontent.com/dagthomas/hexSorter/master/images/unsorted_hexSorter.png "Unsorted Color Array")
@@ -35,6 +35,7 @@ sheets or vector fill/strokes.<br>
  * Get brightest color from array
  * Get most saturated color from array
  * Mix hexadecimal color values to create/diffuse colors
+ * Choose conversion type for RGB->Y. BT.601, BT709, BT2020
  <br>
 
 ## Usage
@@ -43,7 +44,7 @@ const hexSorter = require('hexSorter');
 const log = console.log;
 var colorArray = ["#516373", "#f2b999", "#f2e8c9", "#6c838c", "#f2f2f2"];
 
-log("bright", hexSorter.mostBrightColor(colorArray));
+log("bright", hexSorter.mostBrightColor(colorArray, 'BT709'));
 log("saturated", hexSorter.mostSaturatedColor(colorArray));
 log("mix", hexSorter.colorMixer('#000000', '#FF0000', 65));
 

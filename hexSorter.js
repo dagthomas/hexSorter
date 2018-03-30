@@ -84,15 +84,27 @@ module.exports = {
         rgb.push(red, green, blue);
         return rgb;
     },
-    hexBrightness: function(hex) {
+    hexBrightness: function(hex, type = 'BT601') {
+        console.log(type);
+        var conversion; // BT601
+        if (type = 'BT601') {
+            conversion = [0.299, 0.587, 0.114]; //BT601
+        } else if (type = 'BT709') {
+            conversion = [0.2126, 0.7152, 0.0722]; //BT709
+        } else if (type = 'BT2020') {
+            conversion = [0.2627, 0.6780, 0.0593]; //BT2020
+        } else {
+            conversion = [0.299, 0.587, 0.114]; //BT601
+        }
+
         var red, green, blue;
 
         hex = this.hexValueSanitize(hex);
         hex = hex.replace('#', '');
 
-        red = this.hexToDec(hex.substring(0, 2)) * 0.299;
-        green = this.hexToDec(hex.substring(2, 4)) * 0.587;
-        blue = this.hexToDec(hex.substring(4, 6)) * 0.114;
+        red = this.hexToDec(hex.substring(0, 2)) * conversion[0];
+        green = this.hexToDec(hex.substring(2, 4)) * conversion[1];
+        blue = this.hexToDec(hex.substring(4, 6)) * conversion[2];
 
         return ((red) + (green) + (blue));
     },
@@ -152,7 +164,7 @@ module.exports = {
 
         return hsv;
     },
-    mostBrightColor: function(colors) {
+    mostBrightColor: function(colors, type) {
         var mostBright = false;
         var color, hex, brightness;
 
@@ -160,8 +172,8 @@ module.exports = {
             color = this.hexValueSanitize(colors[i]);
             hex = color.replace('#', '');
 
-            brightness = this.hexBrightness(hex);
-            if (!mostBright || this.hexBrightness(hex) > this.hexBrightness(mostBright)) {
+            brightness = this.hexBrightness(hex, type);
+            if (!mostBright || this.hexBrightness(hex, type) > this.hexBrightness(mostBright, type)) {
                 mostBright = hex;
             }
 
@@ -224,10 +236,9 @@ module.exports = {
     }
 }
 
-/*
+
 var colorArray = ["#516373", "#6c838c", "#f2e8c9", "#f2b999", "#f2f2f2"];
 
-console.log("bright", module.exports.mostBrightColor(colorArray));
+console.log("bright", module.exports.mostBrightColor(colorArray, 'BT709'));
 console.log("saturated", module.exports.mostSaturatedColor(colorArray));
 console.log("mix", module.exports.colorMixer('#000000', '#FF0000', 65));
-*/
