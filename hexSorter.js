@@ -138,7 +138,7 @@ module.exports = {
 
         hsl['h'] = h;
         hsl['s'] = s;
-        hsl['v'] = max;
+        hsl['v'] = 0.9;
 
         return hsl;
     },
@@ -189,27 +189,6 @@ module.exports = {
         }
         return '#' + mostSaturated;
     },
-    mostIntenseColor: function(colors) {
-        var color, hex, hsv, saturation, hsvOld, mostIntense;
-        mostIntense = false;
-
-        for (i = 0; i < colors.length; i++) {
-            color = this.hexValueSanitize(colors[i]);
-            hex = color.replace('#', '');
-            hsv = this.hexToHsv(hex);
-            saturation = hsv['s'];
-
-            if (mostIntense) {
-                hsvOld = this.hexToHsv(mostIntense);
-            }
-
-            if (!mostIntense || saturation > hsvOld['s']) {
-                mostIntense = hex;
-            }
-        }
-        return '#' + mostIntense;
-
-    },
     colorMixer: function(hex1, hex2, percent) {
         var r1, r2, g1, g2, b1, b2;
         hex1 = this.hexValueSanitize(hex1);
@@ -250,6 +229,5 @@ var colorArray = ["#516373", "#6c838c", "#f2e8c9", "#f2b999", "#f2f2f2"];
 
 console.log("bright", module.exports.mostBrightColor(colorArray));
 console.log("saturated", module.exports.mostSaturatedColor(colorArray));
-console.log("most intense", module.exports.mostIntenseColor(colorArray));
 console.log("mix", module.exports.colorMixer('#000000', '#FF0000', 65));
 */
