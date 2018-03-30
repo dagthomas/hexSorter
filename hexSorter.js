@@ -86,11 +86,11 @@ module.exports = {
     },
     hexBrightness: function(hex, type = 'BT601') {
         var conversion;
-        if (type = 'BT601') {
+        if (type == 'BT601') {
             conversion = [0.299, 0.587, 0.114]; //BT601
-        } else if (type = 'BT709') {
+        } else if (type == 'BT709') {
             conversion = [0.2126, 0.7152, 0.0722]; //BT709
-        } else if (type = 'BT2020') {
+        } else if (type == 'BT2020') {
             conversion = [0.2627, 0.6780, 0.0593]; //BT2020
         } else {
             conversion = [0.299, 0.587, 0.114]; //BT601

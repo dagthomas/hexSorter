@@ -1,4 +1,4 @@
-# hexSorter v1.2.5
+# hexSorter v1.2.6
 
 ### Original:
 ![alt text](https://raw.githubusercontent.com/dagthomas/hexSorter/master/images/unsorted_hexSorter.png "Unsorted Color Array")
