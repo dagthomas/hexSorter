@@ -72,6 +72,7 @@ node sortcolors
 ### Web example
 
 [Hex Sorter - Stack Blitz Angular example](https://stackblitz.com/edit/hexsorter?file=index.js)
+
 [Hex Sorter - Stack Blitz Vue Example](https://stackblitz.com/edit/hexsorter?file=index.js)
 
 
