@@ -1,28 +1,4 @@
 module.exports = {
-    strPad: function(input, padLength, padString) {
-        let half = '';
-        let padToGo;
-
-        let strPadRepeater = function(s, len) {
-            let collect = '';
-
-            while (collect.length < len) {
-                collect += s;
-            };
-            collect = collect.substr(0, len);
-
-            return collect;
-        }
-
-        input += '';
-        padString = padString !== undefined ? padString : ' ';
-
-        if ((padToGo = padLength - input.length) > 0) {
-            input = strPadRepeater(padString, padToGo) + input;
-        };
-        return input;
-    },
-
     hexValueSanitize: function(color) {
         let red;
         let green;
@@ -53,11 +29,9 @@ module.exports = {
         };
         return hex;
     },
-
     hexToDec: function(hex) {
         return parseInt((hex + '').replace(/[^a-f0-9]/gi, ''), 16);
     },
-
     decToHex: function(number) {
         if (number < 0) {
             number = 0xFFFFFFFF + number + 1;
@@ -241,9 +215,9 @@ module.exports = {
         green = (percent * g1 + (100 - percent) * g2) / 100;
         blue = (percent * b1 + (100 - percent) * b2) / 100;
 
-        let red_hex = this.strPad(this.decToHex(red), 2, '0');
-        let green_hex = this.strPad(this.decToHex(green), 2, '0');
-        let blue_hex = this.strPad(this.decToHex(blue), 2, '0');
+        let red_hex = this.decToHex(red).padStart(2, '0');
+        let green_hex = this.decToHex(green).padStart(2, '0');
+        let blue_hex =this.decToHex(blue).padStart(2, '0');
 
         return `#${red_hex+green_hex+blue_hex}`;
     },
