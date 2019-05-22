@@ -234,5 +234,19 @@ module.exports = {
           output.push(color)
         }
         return output
+      },
+      mixSortColors: function(colors, type, mixcolor, percentage) {
+        const input = colors.slice(0)
+        const output = []
+
+        while (input.length > 0) {
+          const color = this[type](input)
+          var index = input.indexOf(color);
+          if (index > -1) {
+            input.splice(index, 1);
+          }
+          output.push(this.colorMixer(color, mixcolor, percentage))
+        }
+        return output
       }
 }
