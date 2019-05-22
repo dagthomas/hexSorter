@@ -246,5 +246,19 @@ module.exports = {
         let blue_hex = this.strPad(this.decToHex(blue), 2, '0');
 
         return `#${red_hex+green_hex+blue_hex}`;
-    }
+    },
+    sortColors: function(colors, type) {
+        const input = colors.slice(0)
+        const output = []
+      
+        while (input.length > 0) {
+          const color = this[type](input)
+          var index = input.indexOf(color);
+          if (index > -1) {
+            input.splice(index, 1);
+          }
+          output.push(color)
+        }
+        return output
+      }
 }
