@@ -40,13 +40,15 @@ sheets or vector fill/strokes.<br>
 
 ## Usage
 ```js
-const hexSorter = require('hexSorter');
+const hexSorter = require('./hexSorter');
 const log = console.log;
 var colorArray = ["#516373", "#f2b999", "#f2e8c9", "#6c838c", "#f2f2f2"];
 
-log("bright", hexSorter.mostBrightColor(colorArray, 'BT709'));
-log("saturated", hexSorter.mostSaturatedColor(colorArray));
-log("mix", hexSorter.colorMixer('#000000', '#FF0000', 65));
+var mostBright = hexSorter.sortColors(colorArray, 'mostBrightColor');
+var mostSaturatedColor = hexSorter.sortColors(colorArray, 'mostSaturatedColor');
+
+console.log("Sorted by brightness: ", mostBright);
+console.log("Sorted by saturation: ", mostSaturatedColor);
 
 ```
 ## Examples
