@@ -1,9 +1,6 @@
 module.exports = {
     hexValueSanitize: function(color) {
-        let red;
-        let green;
-        let blue;
-        let hex;
+        let red,green,blue,hex;
         color = color.replace(/[^A-Z0-9]/ig, '').replace('#', '');
         if (color.length > 6) {
             color = color.substring(0, 6);
@@ -39,9 +36,7 @@ module.exports = {
         return parseInt(number, 10).toString(16);
     },
     hexToRgb: function(hex) {
-        let red;
-        let green;
-        let blue;
+        let red,green, blue;
 
         hex = this.hexValueSanitize(hex);
         if (hex.length == 3) {
@@ -56,10 +51,7 @@ module.exports = {
         return [red, green, blue];
     },
     hexBrightness: function(hex, type) {
-        let conversion;
-        let red;
-        let green;
-        let blue;
+        let conversion,red,green,blue;
 
         if (type == 'BT601') {
             conversion = [0.299, 0.587, 0.114]; //BT601
@@ -84,15 +76,7 @@ module.exports = {
         let g = color[1] / 255;
         let b = color[2] / 255;
 
-        let h;
-        let s;
-        let min;
-        let max;
-        let del;
-        let dR;
-        let dG;
-        let dB;
-        let hsl;
+        let h,s,min,max,del,dR,dG,dB,hsl;
 
         hsl = [];
 
@@ -134,8 +118,7 @@ module.exports = {
         return hsl;
     },
     hexToHsv: function(hex) {
-        let rgb;
-        let hsv;
+        let rgb, hsv;
 
         hex = this.hexValueSanitize(hex);
 
@@ -146,9 +129,7 @@ module.exports = {
     },
     mostBrightColor: function(colors, type) {
         let mostBright = false;
-        let color;
         let hex;
-        let brightness;
 
         colors.forEach((color) => {
             hex = this.hexValueSanitize(color);
@@ -163,11 +144,7 @@ module.exports = {
     },
     mostSaturatedColor: function(colors) {
         let mostSaturated = false;
-        let color;
-        let hex;
-        let hsv;
-        let saturation;
-        let oldHsv;
+        let hex, hsv, saturation, oldHsv;
 
         colors.forEach((color) => {
             hex = this.hexValueSanitize(color);
@@ -187,12 +164,7 @@ module.exports = {
         return `#${mostSaturated}`
     },
     colorMixer: function(hex1, hex2, percent) {
-        let r1;
-        let r2;
-        let g1;
-        let g2;
-        let b1;
-        let b2;
+        let r1, r2, g1, g2, b1, b2, red, green, blue;
         hex1 = this.hexValueSanitize(hex1);
         hex2 = this.hexValueSanitize(hex2);
         if (hex1.length == 3) {
@@ -222,8 +194,8 @@ module.exports = {
         return `#${red_hex+green_hex+blue_hex}`;
     },
     sortColors: function(colors, type) {
-        const input = colors.slice(0)
-        const output = []
+        const input = colors.slice(0);
+        const output = [];
       
         while (input.length > 0) {
           const color = this[type](input)
