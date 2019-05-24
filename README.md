@@ -1,4 +1,4 @@
-# hexSorter v1.4.2
+# hexSorter v1.4.3
 
 ### Original:
 ![alt text](https://raw.githubusercontent.com/dagthomas/hexSorter/master/images/unsorted_hexSorter.png "Unsorted Color Array")
@@ -47,12 +47,15 @@ var colorArray = ["#516373", "#f2b999", "#f2e8c9", "#6c838c", "#f2f2f2"];
 var mixColor = hexSorter.colorMixer(colorArray[0], "#fff", 50);
 var mostBright = hexSorter.sortColors(colorArray, 'mostBrightColor');
 var mostSaturatedColor = hexSorter.sortColors(colorArray, 'mostSaturatedColor');
+var colorMixed = hexSorter.colorMixer("#516373", "#fff", 50);
 var mixSort = hexSorter.mixSortColors(colorArray, 'mostBrightColor', "#fff", 50);
 
 console.log("Mixed with 50% white: ", mixColor);
 console.log("Sorted by brightness: ", mostBright);
 console.log("Sorted by saturation: ", mostSaturatedColor);
 console.log("Mix #fff sorted: ", mixSort);
+console.log("Mix #516373 with #fff - 50%: ", colorMixed);
+
 
 
 ```
@@ -99,3 +102,5 @@ Outputs 'output/dagthomas.css' based on color arrays in 'input/colors.txt' (from
 
 ### Example of CSS file used on SVG in HTML
 ![alt text](https://raw.githubusercontent.com/dagthomas/hexSorter/master/images/example_hexSorter.png "Example of palette applied to SVG")
+
+
