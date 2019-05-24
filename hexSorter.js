@@ -193,6 +193,9 @@ module.exports = {
         let g2;
         let b1;
         let b2;
+        let red;
+        let green;
+        let blue;
         hex1 = this.hexValueSanitize(hex1);
         hex2 = this.hexValueSanitize(hex2);
         if (hex1.length == 3) {
