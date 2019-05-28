@@ -1,4 +1,4 @@
-# hexSorter v1.4.3
+# hexSorter v1.5.0
 
 ### Original:
 ![alt text](https://raw.githubusercontent.com/dagthomas/hexSorter/master/images/unsorted_hexSorter.png "Unsorted Color Array")
@@ -39,6 +39,10 @@ sheets or vector fill/strokes.<br>
  <br>
 
 ## Usage
+```shell
+node test
+```
+
 ```js
 const hexSorter = require('./hexSorter');
 const log = console.log;
@@ -55,8 +59,6 @@ console.log("Sorted by brightness: ", mostBright);
 console.log("Sorted by saturation: ", mostSaturatedColor);
 console.log("Mix #fff sorted: ", mixSort);
 console.log("Mix #516373 with #fff - 50%: ", colorMixed);
-
-
 
 ```
 ## Examples

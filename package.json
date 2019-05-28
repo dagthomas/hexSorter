@@ -1,10 +1,10 @@
 {
     "name": "hexsorter",
-    "version": "1.4.3",
+    "version": "1.5.0",
     "description": "A sorter for hexadecimal color arrays - by brightness, saturization, brightest dull color + hex color mixer.",
     "main": "hexSorter.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "node test.js"
     },
     "repository": {
         "type": "git",

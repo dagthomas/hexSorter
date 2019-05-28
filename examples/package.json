@@ -1,18 +1,19 @@
 {
     "name": "hexsorterexamples",
-    "version": "1.0.0",
+    "version": "1.5.0",
     "description": "Samples for the hexSorter package",
     "main": "sortcolors.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "sort": "node sortcolors.js",
+        "convert": "node convtocss.js"
     },
     "author": "Dag Thomas Olsen",
     "license": "ISC",
     "homepage": "https://github.com/dagthomas/hexSorter#readme",
     "dependencies": {
-        "chalk": "^2.3.2",
+        "chalk": "^2.4.2",
         "fs": "0.0.1-security",
-        "readline": "^1.3.0",
-        "hexsorter": "*"
+        "readline": "^1.3.0"
     }
 }

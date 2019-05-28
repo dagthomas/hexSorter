@@ -1,6 +1,6 @@
 const fs = require('fs');
 const readline = require('readline');
-const hexSorter = require('hexSorter');
+const hexSorter = require('../hexSorter');
 
 const outputFile = 'dagthomas.css';
 const inputFile = 'colors.txt';
@@ -10,11 +10,11 @@ var output = "";
 
 fs.unlink("output/" + outputFile, function(err) {
     if (err && err.code == 'ENOENT') {
-        //  console.info("File " + outputFile + " doesn't exist, won't remove it.");
+
     } else if (err) {
-        //   console.error("Error occurred while trying to remove " + outputFile);
+
     } else {
-        //   console.info(`removed ` + outputFile);
+
     }
 });
 
@@ -30,40 +30,31 @@ function writeToFile(input) {
 }
 
 lineReader.on('line', function(line) {
-    var hl1, hl2, fill, s1, s2;
-    a = line.split(",");
-    h1 = hexSorter.mostBrightColor(a);
-    a.splice(a.indexOf(h1), 1);
-    h2 = hexSorter.mostBrightColor(a);
-    a.splice(a.indexOf(h2), 1);
-    fill = hexSorter.mostBrightColor(a);
-    a.splice(a.indexOf(fill), 1);
-    s1 = hexSorter.mostBrightColor(a);
-    a.splice(a.indexOf(s1), 1);
-    s2 = hexSorter.mostBrightColor(a);
-    a.splice(a.indexOf(s2), 1);
+    var colorArray = line.split(",");
+
+    colors = hexSorter.sortColors(colorArray, 'mostBrightColor');
 
     output += "/* Palette #" + lineno + " */\r\n";
-    output += "._dtp" + lineno + ".h1c {" + "color:       " + h1 + ";}\r\n";
-    output += "._dtp" + lineno + ".h1bg {" + "background: " + h1 + ";}\r\n";
-    output += "._dtp" + lineno + ".h1f {" + "fill:        " + h1 + ";}\r\n";
-    output += "._dtp" + lineno + ".h1s {" + "stroke:      " + h1 + ";}\r\n";
-    output += "._dtp" + lineno + ".h2c {" + "color:       " + h2 + ";}\r\n";
-    output += "._dtp" + lineno + ".h2bg {" + "background: " + h2 + ";}\r\n";
-    output += "._dtp" + lineno + ".h2f {" + "fill:        " + h2 + ";}\r\n";
-    output += "._dtp" + lineno + ".h2s {" + "stroke:      " + h2 + ";}\r\n";
-    output += "._dtp" + lineno + ".fc {" + "color:        " + fill + ";}\r\n";
-    output += "._dtp" + lineno + ".fbg {" + "background:  " + fill + ";}\r\n";
-    output += "._dtp" + lineno + ".ff {" + "fill:         " + fill + ";}\r\n";
-    output += "._dtp" + lineno + ".fs {" + "stroke:       " + fill + ";}\r\n";
-    output += "._dtp" + lineno + ".s1c {" + "color:       " + s1 + ";}\r\n";
-    output += "._dtp" + lineno + ".s1bg {" + "background: " + s1 + ";}\r\n";
-    output += "._dtp" + lineno + ".s1f {" + "fill:        " + s1 + ";}\r\n";
-    output += "._dtp" + lineno + ".s1s {" + "stroke:      " + s1 + ";}\r\n";
-    output += "._dtp" + lineno + ".s2c {" + "color:       " + s2 + ";}\r\n";
-    output += "._dtp" + lineno + ".s2bg {" + "background: " + s2 + ";}\r\n";
-    output += "._dtp" + lineno + ".s2f {" + "fill:        " + s2 + ";}\r\n";
-    output += "._dtp" + lineno + ".s2s {" + "stroke:      " + s2 + ";}\r\n\r\n";
+    output += "._dtp" + lineno + ".h1c {" + "color:       " + colors[0] + ";}\r\n";
+    output += "._dtp" + lineno + ".h1bg {" + "background: " + colors[0] + ";}\r\n";
+    output += "._dtp" + lineno + ".h1f {" + "fill:        " + colors[0] + ";}\r\n";
+    output += "._dtp" + lineno + ".h1s {" + "stroke:      " + colors[0] + ";}\r\n";
+    output += "._dtp" + lineno + ".h2c {" + "color:       " + colors[1] + ";}\r\n";
+    output += "._dtp" + lineno + ".h2bg {" + "background: " + colors[1] + ";}\r\n";
+    output += "._dtp" + lineno + ".h2f {" + "fill:        " + colors[1] + ";}\r\n";
+    output += "._dtp" + lineno + ".h2s {" + "stroke:      " + colors[1] + ";}\r\n";
+    output += "._dtp" + lineno + ".fc {" + "color:        " + colors[2] + ";}\r\n";
+    output += "._dtp" + lineno + ".fbg {" + "background:  " + colors[2] + ";}\r\n";
+    output += "._dtp" + lineno + ".ff {" + "fill:         " + colors[2] + ";}\r\n";
+    output += "._dtp" + lineno + ".fs {" + "stroke:       " + colors[2] + ";}\r\n";
+    output += "._dtp" + lineno + ".s1c {" + "color:       " + colors[3] + ";}\r\n";
+    output += "._dtp" + lineno + ".s1bg {" + "background: " + colors[3] + ";}\r\n";
+    output += "._dtp" + lineno + ".s1f {" + "fill:        " + colors[3] + ";}\r\n";
+    output += "._dtp" + lineno + ".s1s {" + "stroke:      " + colors[3] + ";}\r\n";
+    output += "._dtp" + lineno + ".s2c {" + "color:       " + colors[4] + ";}\r\n";
+    output += "._dtp" + lineno + ".s2bg {" + "background: " + colors[4] + ";}\r\n";
+    output += "._dtp" + lineno + ".s2f {" + "fill:        " + colors[4] + ";}\r\n";
+    output += "._dtp" + lineno + ".s2s {" + "stroke:      " + colors[4] + ";}\r\n\r\n";
 
     lineno++;
 });
